@@ -26,7 +26,7 @@ public interface MyConnection {
 
   <T> T unwrap(java.lang.Class<T> iface) throws java.sql.SQLException;
 
-  <T extends List> T unwrapList(T type);
+  <T extends List<?>> T unwrapList(T type);
 
 
 //  default String getDatabaseProductName() {

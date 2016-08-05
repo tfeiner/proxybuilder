@@ -42,12 +42,12 @@ public class MainV008 {
     }
 
     @Override
-    public <T extends List> T unwrapList(final T type) {
+    public <T extends List<?>> T unwrapList(final T type) {
       return null;
     }
 
     @Override
-    public <T extends List> T unwrapList(final T type, final String str) {
+    public <T extends List<?>> T unwrapList(final T type, final String str) {
       return null;
     }
   }

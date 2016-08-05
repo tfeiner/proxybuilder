@@ -26,7 +26,7 @@ public abstract class AdapterBuilder<T> {
   public T buildForTarget(Class<T> target) {
     return (T) Proxy.newProxyInstance(
         target.getClassLoader(),
-        new Class[]{target},
+        new Class<?>[]{target},
         getInvocationHandler()
     );
   }

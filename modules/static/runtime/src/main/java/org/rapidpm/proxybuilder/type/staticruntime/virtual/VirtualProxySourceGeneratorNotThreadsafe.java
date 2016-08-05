@@ -23,7 +23,7 @@ class VirtualProxySourceGeneratorNotThreadsafe
     extends VirtualProxySourceGenerator {
 
   public VirtualProxySourceGeneratorNotThreadsafe(
-      Class subject, Class realSubject) {
+      Class<?> subject, Class<?> realSubject) {
     super(subject, realSubject, CreationStrategy.NONE);
   }
 

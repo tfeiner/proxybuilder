@@ -47,7 +47,7 @@ public class Generator {
   private Generator() {
   }
 
-  public static Class make(ClassLoader loader, String className, CharSequence javaSource) {
+  public static Class<?> make(ClassLoader loader, String className, CharSequence javaSource) {
     GeneratedClassFile gcf = new GeneratedClassFile();
     DiagnosticCollector<JavaFileObject> dc = new DiagnosticCollector<>();
     boolean result = compile(className, javaSource, gcf, dc);
@@ -65,7 +65,7 @@ public class Generator {
     return task.call();
   }
 
-  private static Class processResults(ClassLoader loader, CharSequence javaSource,
+  private static Class<?> processResults(ClassLoader loader, CharSequence javaSource,
                                       GeneratedClassFile gcf, DiagnosticCollector<?> dc, boolean result) {
     if (result) {
       return createClass(loader, gcf);
@@ -79,10 +79,10 @@ public class Generator {
   }
 
   //go go to the classloader
-  private static Class createClass(ClassLoader loader, GeneratedClassFile gcf) {
+  private static Class<?> createClass(ClassLoader loader, GeneratedClassFile gcf) {
     try {
       byte[] data = gcf.getClassAsBytes();
-      return (Class) DEFINE_CLASS_METHOD.invoke(null, loader, null, data, 0, data.length);
+      return (Class<?>) DEFINE_CLASS_METHOD.invoke(null, loader, null, data, 0, data.length);
     } catch (RuntimeException e) {
       throw e;
     } catch (Exception e) {

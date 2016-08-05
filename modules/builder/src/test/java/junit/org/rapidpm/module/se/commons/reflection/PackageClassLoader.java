@@ -30,14 +30,14 @@ import java.util.List;
  */
 public class PackageClassLoader {
 
-  public List<Class> getClasses(String packageName) {
-    final List<Class> result = new ArrayList<>();
+  public List<Class<?>> getClasses(String packageName) {
+    final List<Class<?>> result = new ArrayList<>();
 
     final ClassLoader[] classLoaders = classLoaders();
     for (final ClassLoader classLoader : classLoaders) {
       assert classLoader != null;
       final String path = packageName.replace('.', '/');
-      final List<Class> classes;
+      final List<Class<?>> classes;
       try {
         final Enumeration<URL> resources = classLoader.getResources(path);
         final List<File> dirs = new ArrayList<>();
@@ -62,8 +62,8 @@ public class PackageClassLoader {
     return result;
   }
 
-  private List<Class> findClasses(File directory, String packageName) throws ClassNotFoundException {
-    final List<Class> classes = new ArrayList<>();
+  private List<Class<?>> findClasses(File directory, String packageName) throws ClassNotFoundException {
+    final List<Class<?>> classes = new ArrayList<>();
     if (!directory.exists()) {
       return classes;
     }

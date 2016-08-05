@@ -24,7 +24,7 @@ import java.util.Arrays;
  */
 public class MethodIdentifier {
   private final String name;
-  private final Class[] parameters;
+  private final Class<?>[] parameters;
 
   public MethodIdentifier(Method m) {
     name = m.getName();

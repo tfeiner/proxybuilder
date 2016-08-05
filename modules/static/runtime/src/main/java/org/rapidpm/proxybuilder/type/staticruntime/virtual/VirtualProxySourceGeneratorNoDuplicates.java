@@ -20,7 +20,7 @@ package org.rapidpm.proxybuilder.type.staticruntime.virtual;
 import java.io.PrintWriter;
 
 class VirtualProxySourceGeneratorNoDuplicates extends VirtualProxySourceGenerator {
-  public VirtualProxySourceGeneratorNoDuplicates(Class subject, Class realSubject) {
+  public VirtualProxySourceGeneratorNoDuplicates(Class<?> subject, Class<?> realSubject) {
     super(subject, realSubject, CreationStrategy.NO_DUPLICATES);
   }
 

@@ -47,7 +47,7 @@ public class AddPreActionTest {
   public void test002() throws Exception {
     final List<Boolean> done = new ArrayList<>();
 
-    final Map build = DynamicProxyBuilder
+    final Map<?,?> build = DynamicProxyBuilder
         .createBuilder(Map.class, HashMap.class, CreationStrategy.NONE)
         .addIPreAction((original, method, args) -> {
           System.out.println("original = " + original);

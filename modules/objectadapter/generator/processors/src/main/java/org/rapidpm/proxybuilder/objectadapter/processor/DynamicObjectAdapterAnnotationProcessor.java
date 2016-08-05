@@ -164,7 +164,7 @@ public class DynamicObjectAdapterAnnotationProcessor extends BasicObjectAdapterA
 
   }
 
-  private Builder createTypedDAOBuilderTypeSpecBuilder(TypeElement typeElement, Class class2Extend, String classnamePostFix) {
+  private Builder createTypedDAOBuilderTypeSpecBuilder(TypeElement typeElement, Class<?> class2Extend, String classnamePostFix) {
     // Get the full QualifiedTypeName
     final ClassName extendedInvocationHandlerClassName = ClassName.get(class2Extend);
     final ParameterizedTypeName typedExtendedInvocationHandler = ParameterizedTypeName.get(extendedInvocationHandlerClassName, TypeName.get(typeElement.asType()));

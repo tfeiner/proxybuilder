@@ -43,14 +43,14 @@ import java.util.List;
 public class DynamicProxyBuilder<I, T extends I> {
 
   private final List<SecurityRule> securityRules = new ArrayList<>();
-  private final List<PreAction> preActionList = new ArrayList<>();
-  private final List<PostAction> postActionList = new ArrayList<>();
+  private final List<PreAction<I>> preActionList = new ArrayList<>();
+  private final List<PostAction<I>> postActionList = new ArrayList<>();
 
 
   private Class<I> clazz;
   private Class<I> clazzOrigin;
   private CreationStrategy creationStrategy;
-  private ServiceFactory serviceFactory;
+  private ServiceFactory<I> serviceFactory;
   private T original;
   private boolean metrics;
   private boolean logging;

@@ -23,13 +23,13 @@ import java.lang.reflect.Modifier;
 
 public abstract class VirtualProxySourceGenerator {
 
-  protected final Class subject;
-  protected final Class realSubject;
+  protected final Class<?> subject;
+  protected final Class<?> realSubject;
   private final String proxy;
   private final CreationStrategy type;
   private CharSequence charSequence;
 
-  public VirtualProxySourceGenerator(Class subject, Class realSubject, CreationStrategy type) {
+  public VirtualProxySourceGenerator(Class<?> subject, Class<?> realSubject, CreationStrategy type) {
     this.subject = subject;
     this.realSubject = realSubject;
     this.type = type;
@@ -37,7 +37,7 @@ public abstract class VirtualProxySourceGenerator {
 
   }
 
-  private static String makeProxyName(Class subject, CreationStrategy type) {
+  private static String makeProxyName(Class<?> subject, CreationStrategy type) {
     return "$$_" + subject.getName().replace('.', '_') +
         "Proxy_" + Integer.toHexString(System.identityHashCode(
         subject.getClassLoader())) + "_" + type;
@@ -79,7 +79,7 @@ public abstract class VirtualProxySourceGenerator {
 
   }
 
-  private String getInheritanceType(Class subject) {
+  private String getInheritanceType(Class<?> subject) {
     return subject.isInterface() ? "implements" : "extends";
   }
 

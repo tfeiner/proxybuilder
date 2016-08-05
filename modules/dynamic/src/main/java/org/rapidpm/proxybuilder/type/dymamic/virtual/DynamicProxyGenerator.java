@@ -34,7 +34,7 @@ public class DynamicProxyGenerator<I, C extends I> {
   private DynamicProxyGenerator() {
   }
 
-  private DynamicProxyGenerator(final Builder builder) {
+  private DynamicProxyGenerator(final Builder<I, C> builder) {
     subject = builder.subject;
     creationStrategy = builder.creationStrategy;
     serviceFactory = builder.serviceFactory;

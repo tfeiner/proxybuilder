@@ -26,7 +26,7 @@ import java.util.WeakHashMap;
 
 public class StaticProxyGenerator {
 
-  private static final WeakHashMap CACHE = new WeakHashMap();
+  private static final WeakHashMap<ClassLoader, Map<Object, Class<?>>> CACHE = new WeakHashMap<>();
 
   private StaticProxyGenerator() {
   }
@@ -48,19 +48,19 @@ public class StaticProxyGenerator {
     return subject.cast(proxy);
   }
 
-  private static Object createStaticProxy(ClassLoader loader, Class subject, Class realClass, CreationStrategy creationStrategy) {
-    Map clcache;
+  private static Object createStaticProxy(ClassLoader loader, Class<?> subject, Class<?> realClass, CreationStrategy creationStrategy) {
+    Map<Object, Class<?>> clcache;
     synchronized (CACHE) {
-      clcache = (Map) CACHE.get(loader);
+      clcache = CACHE.get(loader);
       if (clcache == null) {
-        CACHE.put(loader, clcache = new HashMap());
+        CACHE.put(loader, clcache = new HashMap<>());
       }
     }
     try {
-      Class clazz;
+      Class<?> clazz;
       CacheKey key = new CacheKey(subject, creationStrategy);
       synchronized (clcache) {
-        clazz = (Class) clcache.get(key);
+        clazz = clcache.get(key);
         if (clazz == null) {
           VirtualProxySourceGenerator vpsg = create(subject, realClass, creationStrategy);
           clazz = Generator.make(loader, vpsg.getProxyName(), vpsg.getCharSequence());
@@ -75,7 +75,7 @@ public class StaticProxyGenerator {
     }
   }
 
-  private static VirtualProxySourceGenerator create(Class subject, Class realClass, CreationStrategy creationStrategy) {
+  private static VirtualProxySourceGenerator create(Class<?> subject, Class<?> realClass, CreationStrategy creationStrategy) {
     switch (creationStrategy) {
       case NONE:
         return new VirtualProxySourceGeneratorNotThreadsafe(subject, realClass);
@@ -93,10 +93,10 @@ public class StaticProxyGenerator {
 
 
   private static class CacheKey {
-    private final Class subject;
+    private final Class<?> subject;
     private final CreationStrategy creationStrategy;
 
-    private CacheKey(Class subject, CreationStrategy creationStrategy) {
+    private CacheKey(Class<?> subject, CreationStrategy creationStrategy) {
       this.subject = subject;
       this.creationStrategy = creationStrategy;
     }

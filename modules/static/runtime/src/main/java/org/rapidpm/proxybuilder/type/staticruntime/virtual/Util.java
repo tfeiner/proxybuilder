@@ -21,11 +21,11 @@ public class Util {
   private Util() {
   }
 
-  public static String prettyPrint(Class clazz) {
+  public static String prettyPrint(Class<?> clazz) {
     return prettyPrint(clazz, "");
   }
 
-  public static String prettyPrint(Class c, String postfix) {
+  public static String prettyPrint(Class<?> c, String postfix) {
     if (c.isArray()) {
       return prettyPrint(c.getComponentType(), postfix + "[]");
     } else {

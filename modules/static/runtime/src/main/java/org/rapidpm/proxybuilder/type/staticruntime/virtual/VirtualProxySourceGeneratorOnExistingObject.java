@@ -21,7 +21,7 @@ import java.io.PrintWriter;
 public class VirtualProxySourceGeneratorOnExistingObject extends VirtualProxySourceGenerator {
 
   public VirtualProxySourceGeneratorOnExistingObject(
-      Class subject, Class realSubject) {
+      Class<?> subject, Class<?> realSubject) {
     super(subject, realSubject, CreationStrategy.OnExistingObject);
   }
 

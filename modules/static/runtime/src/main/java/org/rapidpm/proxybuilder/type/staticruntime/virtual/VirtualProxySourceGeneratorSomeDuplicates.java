@@ -21,7 +21,7 @@ import java.io.PrintWriter;
 class VirtualProxySourceGeneratorSomeDuplicates
     extends VirtualProxySourceGenerator {
   public VirtualProxySourceGeneratorSomeDuplicates(
-      Class subject, Class realSubject) {
+      Class<?> subject, Class<?> realSubject) {
     super(subject, realSubject, CreationStrategy.SOME_DUPLICATES);
   }
 

@@ -26,8 +26,8 @@ public class PackageClassLoaderTest {
   @Test
   public void testLoad001() throws Exception {
     final PackageClassLoader loader = new PackageClassLoader();
-    final List<Class> classes = loader.getClasses("junit.org.rapidpm.module.se.commons.reflection.test001");
-    for (final Class aClass : classes) {
+    final List<Class<?>> classes = loader.getClasses("junit.org.rapidpm.module.se.commons.reflection.test001");
+    for (final Class<?> aClass : classes) {
       System.out.println("aClass = " + aClass);
     }
 
@@ -36,8 +36,8 @@ public class PackageClassLoaderTest {
   @Test
   public void testLoad002() throws Exception {
     final PackageClassLoader loader = new PackageClassLoader();
-    final List<Class> classes = loader.getClasses("org.jboss.weld");
-    for (final Class aClass : classes) {
+    final List<Class<?>> classes = loader.getClasses("org.jboss.weld");
+    for (final Class<?> aClass : classes) {
       System.out.println("aClass = " + aClass);
     }
 
